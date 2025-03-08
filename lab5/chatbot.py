@@ -20,13 +20,13 @@ def main():
     config = configparser.ConfigParser()
     config.read(CONFIG_PATH)
     
-    updater = Updater(token=(),use_context=True)
+    updater = Updater(token=(os.environ['TELEGRAM_ACCESS_TOKEN']),use_context=True)
     dispatcher = updater.dispatcher
 
     global redis1
     redis1 = redis.Redis(host=(os.environ['REDIS_HOST']),
                         password=(os.environ['REDIS_PASSWORD']),
-                        port=(os.environ['REDIS_PROT']),
+                        port=(os.environ['REDIS_PORT']),
                         decode_responses=(config['REDIS']['DECODE_RESPONSE']),
                         username=(config['REDIS']['USER_NAME']))
     
